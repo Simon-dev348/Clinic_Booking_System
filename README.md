@@ -25,3 +25,11 @@ docker compose exec api python manage.py migrate
 docker compose exec api python manage.py createsuperuser
 docker compose exec api python manage.py seed_demo
 ```
+## Starting the backend only
+docker compose up --build api
+
+## Starting the frontend only
+docker compose up --build web
+
+## Starting both together
+docker compose up --build

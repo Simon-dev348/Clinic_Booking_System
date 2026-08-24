@@ -40,3 +40,15 @@ class Booking(models.Model):
     patient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="bookings")
     notes = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+class ClinicProfile(models.Model):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="clinic_profiles")
+    clinic_name = models.CharField(max_length=160)
+    location = models.CharField(max_length=160)
+    practitioners = models.JSONField(default=list)
+    services = models.JSONField(default=list)
+    availability = models.JSONField(default=dict)
+    onboarding_complete = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.clinic_name

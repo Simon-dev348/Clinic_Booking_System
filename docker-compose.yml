@@ -6,7 +6,7 @@ services:
       POSTGRES_USER: clinic
       POSTGRES_PASSWORD: clinic
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -26,6 +26,13 @@ services:
       POSTGRES_HOST: db
       POSTGRES_PORT: "5432"
       CORS_ALLOWED_ORIGINS: http://localhost:3000
+      FRONTEND_URL: http://localhost:3000
+      EMAIL_CONFIRMATION_REQUIRED: "0"
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      GOOGLE_REDIRECT_URI: http://localhost:8000/api/auth/google/callback/
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      RESEND_FROM_EMAIL: ${RESEND_FROM_EMAIL:-Carewise <onboarding@resend.dev>}
     ports:
       - "8000:8000"
     volumes:
